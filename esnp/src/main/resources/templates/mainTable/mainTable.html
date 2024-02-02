@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link media="all" rel="stylesheet" th:href="@{/styles/css/main.css}" type="text/css"/>
+</head>
+<body>
+
+<div>
+    <form th:action="@{/logout}" th:method="POST">
+        <button type="submit">Выйти</button>
+    </form>
+    <br>
+    <form action="/auth/hello">
+        <button type="submit">Вернуться на главную</button>
+    </form>
+    <br>
+    <form action="/mainTable/createRecord">
+        <button type="submit">Добавить запись</button>
+    </form>
+    <br>
+    <form action="/mainTable/exportToCsv">
+        <button type="submit">Выгрузить в CSV</button>
+    </form>
+    <br>
+    <form action="/people/registration">
+        <button type="submit" th:if="${authPerson.role == 'Admin'}">Создать пользователя</button>
+    </form>
+    <br th:if="${authPerson.role == 'Admin'}">
+</div>
+
+<table>
+    <tr>
+        <th>ФИО</th>
+        <th>Должность</th>
+        <th>Адрес</th>
+        <th>IP-адрес</th>
+        <th>Any Connect</th>
+        <th>Телефон</th>
+        <th>Кто создал</th>
+        <th>Дата создания</th>
+        <th>Кто изменил</th>
+        <th>Дата изменения</th>
+        <th>Примечание</th>
+        <th>
+            <span th:if="${authPerson.role == 'Admin'}">Редактирование</span>
+        </th>
+        <th>
+            <span th:if="${authPerson.role == 'Admin'}">Удалить</span>
+        </th>
+    </tr>
+    <th:block th:each="mt : ${main_tables}">
+        <tr>
+            <td th:text="${mt.getFullName()}"/>
+            <td th:text="${mt.getAppointment()}"/>
+            <td th:text="${mt.getAddress()}"/>
+            <td th:text="${mt.getIp()}"/>
+            <td th:text="${mt.getAnyconnect()}"/>
+            <td th:text="${mt.getPhone()}"/>
+            <td th:text="${mt.getPersonWhoCreated().username}"/>
+            <td th:text="${#dates.format(mt.getWhenCreated(), 'dd-MMM-yyyy')}"/>
+            <td th:text="${mt.getPersonWhoChanged().username}"/>
+            <td th:text="${#dates.format(mt.getWhenChanged(), 'dd-MMM-yyyy')}"/>
+            <td th:text="${mt.getNote()}"/>
+            <td>
+                <form th:action="@{/mainTable/{id}/edit(id=${mt.getMainTableId()})}" th:object="${authPerson}">
+                    <button type="submit" th:if="${authPerson.role == 'Admin'}">Редактировать</button>
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/mainTable/{id}/delete(id=${mt.getMainTableId()})}" th:object="${authPerson}" >
+                    <button type="submit" th:if="${authPerson.role == 'Admin'}">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

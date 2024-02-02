@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация нового пользователя</title>
+    <link th:href="@{/styles/css/registration.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div>
+    <form action="/auth/hello">
+        <button type="submit">Вернуться на главную</button>
+    </form>
+    <br>
+</div>
+
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Роль</th>
+    </tr>
+    <th:block th:each="person : ${people}">
+        <tr>
+            <td th:text="${person.getPersonId()}"/>
+            <td th:text="${person.getUsername()}"/>
+            <td th:text="${person.getRole()}"/>
+        </tr>
+    </th:block>
+</table>
+
+</body>

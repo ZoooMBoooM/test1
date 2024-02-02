@@ -1,0 +1,17 @@
+body {
+    background: #FFF8DC;
+}
+
+table {
+    border: 1px solid black;
+    background: #FFEBCD;
+    border-collapse: collapse;
+}
+
+th{
+    border: 1px solid black;
+}
+
+td{
+    border: 1px solid black;
+}

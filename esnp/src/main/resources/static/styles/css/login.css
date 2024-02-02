@@ -1,0 +1,12 @@
+body {
+    background: #FFF8DC;
+}
+
+span {
+    font-size: 30pt;
+    text-decoration: underline;
+}
+
+.main {
+    margin-left: 100px;
+}

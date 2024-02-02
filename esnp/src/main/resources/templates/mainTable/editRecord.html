@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактирование записи</title>
+    <link th:href="@{/styles/css/createRecord.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div>
+  <form th:method="PATCH" th:action="@{/mainTable/{id}(id=${recordOfMainTable.getMainTableId()})}" th:object="${recordOfMainTable}">
+    <label for="fullName">Введите ФИО:</label>
+    <input type="text" th:field="*{fullName}" id="fullName"/>
+    <div style="color:red" th:if="${#fields.hasErrors('fullName')}" th:errors="*{fullName}">FullName Error</div>
+    <br/>
+    <br/>
+    <label for="appointment">Введите должность:</label>
+    <input type="text" th:field="*{appointment}" id="appointment"/>
+    <div style="color: red" th:if="${#fields.hasErrors('appointment')}" th:errors="*{appointment}">Appointment Error</div>
+    <br/>
+    <br/>
+    <label for="address">Введите адрес:</label>
+    <input type="text" th:field="*{address}" id="address"/>
+    <div style="color:red" th:if="${#fields.hasErrors('address')}" th:errors="*{address}">Address Error</div>
+    <br/>
+    <br/>
+    <label for="ip">Введите IP-адрес:</label>
+    <input type="text" th:field="*{ip}" id="ip"/>
+    <div style="color:red" th:if="${#fields.hasErrors('ip')}" th:errors="*{ip}">Address Error</div>
+    <br/>
+    <br/>
+    <label for="phone">Введите телефон:</label>
+    <input type="text" th:field="*{phone}" id="phone"/>
+    <div style="color:red" th:if="${#fields.hasErrors('phone')}" th:errors="*{address}">Phone Error</div>
+    <br/>
+    <br/>
+    <label for="fullName">Кто создал запись</label>
+    <input type="text" th:field="*{personWhoCreated}" id="personWhoCreated"/>
+    <div style="color:red" th:if="${#fields.hasErrors('personWhoCreated')}" th:errors="*{personWhoCreated}">PersonWhoCreated Error</div>
+    <br/>
+    <br/>
+    <label for="fullName">Когда создана запись</label>
+    <input type="date" th:field="*{whenCreated}" id="whenCreated"/>
+    <div style="color:red" th:if="${#fields.hasErrors('whenCreated')}" th:errors="*{whenCreated}">WhenCreated Error</div>
+    <br/>
+    <br/>
+    <label for="fullName">Кто изменил запись</label>
+    <input type="text" th:field="*{personWhoChanged}" id="personWhoChanged"/>
+    <div style="color:red" th:if="${#fields.hasErrors('personWhoChanged')}" th:errors="*{personWhoChanged}">FullName Error</div>
+    <br/>
+    <br/>
+    <label for="fullName">Когда изменена запись</label>
+    <input type="date" th:field="*{whenChanged}" id="whenChanged"/>
+    <div style="color:red" th:if="${#fields.hasErrors('whenChanged')}" th:errors="*{whenChanged}">WhenChanged Error</div>
+    <br/>
+    <br/>
+    <label for="note">Примечание:</label>
+    <input type="text" th:field="*{note}" id="note"/>
+    <div style="color:red" th:if="${#fields.hasErrors('note')}" th:errors="*{note}">Address Error</div>
+    <br/>
+    <br/>
+    <label for="anyconnect">Cisco Any Connect:</label>
+    <input type="checkbox" th:field="*{anyconnect}" id="anyconnect"/>
+    <div style="color:red" th:if="${#fields.hasErrors('anyconnect')}" th:errors="*{anyconnect}">Address Error</div>
+    <br/>
+    <br/>
+    <input type="submit" value="Редактировать!"/>
+  </form>
+</div>
+
+</body>
+</html>

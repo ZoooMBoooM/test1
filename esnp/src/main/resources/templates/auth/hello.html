@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <link th:href="@{/styles/css/login.css}" rel="stylesheet"/>
+</head>
+<body>
+Главная страница
+<br>
+<br>
+<div>
+    <form th:action="@{/logout}" th:method="POST">
+        <button type="submit">Выйти</button>
+    </form>
+    <br>
+    <form action="/mainTable">
+        <button type="submit">Основная таблица</button>
+    </form>
+    <br>
+    <form action="/people/registration" th:object="${authPerson}">
+        <button type="submit" th:if="${authPerson.role == 'Admin'}">Создать пользователя</button>
+    </form>
+    <br th:if="${authPerson.role == 'Admin'}">
+    <form action="/people/allPeople" th:object="${authPerson}">
+        <button type="submit" th:if="${authPerson.role == 'Admin'}">Список пользователей</button>
+    </form>
+    <br th:if="${authPerson.role == 'Admin'}">
+</div>
+
+</body>
+</html>
