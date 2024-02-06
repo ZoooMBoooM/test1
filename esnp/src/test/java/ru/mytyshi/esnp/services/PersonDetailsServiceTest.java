@@ -39,11 +39,8 @@ public class PersonDetailsServiceTest {
 
     @Test
     void loadUserByUsername_Invalid() {
-//        doThrow(UsernameNotFoundException.class).when(peopleRepository).findByUsername("Person Mocked");
         Optional<Person> person = Optional.empty();
         doReturn(person).when(peopleRepository).findByUsername("Person Mocked");
-
-        personDetailsService.loadUserByUsername("Person Mocked");
 
         assertThrows(UsernameNotFoundException.class, () -> personDetailsService.loadUserByUsername("Person Mocked"));
     }
