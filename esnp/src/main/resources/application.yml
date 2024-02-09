@@ -3,7 +3,7 @@ spring:
     driver-class-name: org.postgresql.Driver
     url: 'jdbc:postgresql://localhost:5432/esnp'
     username: postgres
-    password: panzer5g
+    password: postgres
   jpa:
     properties:
       hibernate:
